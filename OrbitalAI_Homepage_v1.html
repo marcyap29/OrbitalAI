@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Disruption intelligence research. Scored, validated frameworks applied to companies and sectors facing AI displacement.">
+  <title>Orbital AI — Disruption Intelligence Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: #888888;
+      --dim: #444444;
+      --teal: #2dd4bf;
+      --teal-dim: rgba(45, 212, 191, 0.12);
+      --border: #1a1a1a;
+      --max: 1120px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      padding: 8px 20px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--teal-dim);
+      border-color: var(--teal);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 180px 0 120px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: 880px;
+    }
+
+    .hero-label {
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 9vw, 120px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #cccccc;
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--teal);
+      color: #000;
+      padding: 14px 28px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-ghost {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--dim);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    /* STATS */
+    .stats {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat {
+      padding: 0 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:first-child { padding-left: 0; }
+    .stat:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 42px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-number span {
+      font-size: 22px;
+      color: var(--teal);
+    }
+
+    .stat-desc {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* SECTION SHARED */
+    section {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-top: 16px;
+    }
+
+    /* FRAMEWORKS */
+    .frameworks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 48px;
+    }
+
+    .framework-card {
+      background: var(--bg);
+      padding: 48px 40px;
+    }
+
+    .framework-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+
+    .framework-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .framework-card p {
+      font-size: 15px;
+      font-weight: 300;
+      color: #aaaaaa;
+      line-height: 1.75;
+    }
+
+    .framework-footnote {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .framework-footnote a {
+      color: var(--teal);
+      border-bottom: 1px solid rgba(45,212,191,0.3);
+      transition: border-color 0.2s;
+    }
+
+    .framework-footnote a:hover { border-color: var(--teal); }
+
+    /* SERIES */
+    .series-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .series-desc {
+      font-size: 17px;
+      font-weight: 300;
+      color: #cccccc;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .series-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .featured-piece {
+      border: 1px solid var(--border);
+      padding: 36px;
+    }
+
+    .piece-tag {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .piece-company {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .score-row {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .score-item { flex: 1; }
+
+    .score-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .score-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .score-value.viable { color: var(--teal); }
+
+    .piece-verdict {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .piece-verdict strong {
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .piece-link {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    /* SECOND TRACK */
+    .track-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .track-text p {
+      font-size: 16px;
+      font-weight: 300;
+      color: #cccccc;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .track-text p:last-child { margin-bottom: 0; }
+
+    .track-indicators {
+      border-left: 1px solid var(--border);
+      padding-left: 48px;
+    }
+
+    .indicator {
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .indicator:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .indicator-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .indicator-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .indicator-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* ENGAGEMENTS */
+    .engagements-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .engagement-type {
+      padding: 40px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .engagement-type:hover { border-color: var(--dim); }
+
+    .engagement-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .engagement-type h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .engagement-type p {
+      font-size: 14px;
+      font-weight: 300;
+      color: #aaaaaa;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .engagement-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .engagements-cta {
+      margin-top: 56px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .engagements-cta p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 400px;
+    }
+
+    /* TOOLS */
+    .tools-section {
+      padding: 80px 0;
+    }
+
+    .tools-intro {
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    .tools-intro p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .tool-card {
+      background: var(--bg);
+      padding: 36px 32px;
+    }
+
+    .tool-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .tool-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .tool-link {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .tool-link:hover {
+      color: var(--muted);
+      border-color: var(--dim);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-brand {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .footer-brand strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      font-weight: 300;
+      color: #666666;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--text); }
+
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--dim);
+    }
+
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      nav { padding: 20px 24px; }
+      .frameworks-grid { grid-template-columns: 1fr; }
+      .series-layout { grid-template-columns: 1fr; }
+      .track-layout { grid-template-columns: 1fr; }
+      .track-indicators { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 40px; margin-top: 0; }
+      .engagements-layout { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .stat { padding: 0; border-right: none; }
+      .footer-inner { flex-direction: column; }
+      .footer-links { flex-direction: column; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2z" stroke="white" stroke-width="1.5" fill="none"/>
+        <path d="M8 14c0-3.314 2.686-6 6-6s6 2.686 6 6-2.686 6-6 6-6-2.686-6-6z" stroke="white" stroke-width="1.5" fill="none"/>
+        <path d="M11 14c0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3-3-1.343-3-3z" fill="white"/>
+      </svg>
+      Orbital AI
+    </a>
+    <div class="nav-links">
+      <a href="#frameworks">Research</a>
+      <a href="#series">Series</a>
+      <a href="#engagements">Engagements</a>
+      <a href="mailto:marc@orbitalai.net" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-label label">Orbital AI</div>
+        <h1>Disruption<br>Intelligence<br>Research.</h1>
+        <p class="hero-sub">
+          Scored frameworks validated against 59 companies. Predictions published before outcomes are confirmed.
+        </p>
+        <div class="hero-actions">
+          <a href="https://orbitalai.substack.com" class="btn-primary">Read Shot Across the Bow</a>
+          <a href="mailto:marc@orbitalai.net" class="btn-ghost">Discuss an engagement</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number">59</div>
+          <div class="stat-desc">Companies validated</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">7</div>
+          <div class="stat-desc">Disruption categories</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">0.45</div>
+          <div class="stat-desc">Survival threshold</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4,000<span>yrs</span></div>
+          <div class="stat-desc">Monetary dataset</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAMEWORKS -->
+  <section id="frameworks">
+    <div class="container">
+      <div class="section-header">
+        <div class="label">The Methodology</div>
+        <h2>Two Frameworks.<br>One Validated Instrument.</h2>
+      </div>
+
+      <div class="frameworks-grid">
+        <div class="framework-card">
+          <div class="framework-tag">RDF — Paper 1</div>
+          <h3>Radial Disruption Field</h3>
+          <p>
+            Maps which industries and companies fall within a disruption's blast radius, using a substrate overlap decay model. The output is a scored blast radius with specific exposure levels per industry segment.
+          </p>
+        </div>
+        <div class="framework-card">
+          <div class="framework-tag">PAT — Paper 2</div>
+          <h3>Pivot Adjacency Theory</h3>
+          <p>
+            Scores whether a post-disruption response will succeed or accelerate decline. Every pivot gets a number. Survival threshold is 0.45. A scored pivot of 0.043 and a scored pivot of 0.59 are not equivalent bets.
+          </p>
+        </div>
+      </div>
+
+      <div class="framework-footnote">
+        <span>Both validated against 59 companies across 7 disruption categories, confirmed with Firth's penalized logistic regression and LOO cross-validation.</span>
+        <span style="color: #333;">|</span>
+        <a href="https://ssrn.com" target="_blank">Published on SSRN</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERIES -->
+  <section id="series">
+    <div class="container">
+      <div class="section-header">
+        <div class="label">Applied Analysis</div>
+        <h2>Shot Across the Bow.</h2>
+      </div>
+
+      <div class="series-layout">
+        <div>
+          <p class="series-desc">
+            One company per piece. Full RDF and PAT analysis. Scored pivots and falsifiable predictions on record before outcomes are confirmed.
+          </p>
+          <p class="series-meta">
+            Meta is the first piece. Google, Goldman Sachs, McKinsey, and 16 others are in the pipeline. Each piece scores the blast radius, identifies the trap the company is currently running toward, and scores the pivot options above and below the survival threshold.
+          </p>
+          <a href="https://orbitalai.substack.com" class="btn-primary">Read the full series</a>
+        </div>
+
+        <div class="featured-piece">
+          <div class="piece-tag">Featured — Issue 01</div>
+          <div class="piece-company">Meta</div>
+
+          <div class="score-row">
+            <div class="score-item">
+              <div class="score-label">Pivot score</div>
+              <div class="score-value viable">0.448</div>
+            </div>
+            <div class="score-item">
+              <div class="score-label">Trap score</div>
+              <div class="score-value" style="color: #888;">0.043</div>
+            </div>
+            <div class="score-item">
+              <div class="score-label">Threshold</div>
+              <div class="score-value" style="color: #555;">0.45</div>
+            </div>
+          </div>
+
+          <div class="piece-verdict">
+            Verdict: <strong>Viable</strong> — Marketplace standalone pivot. Frontier model play is below survival threshold.
+          </div>
+
+          <a href="https://orbitalai.substack.com" class="piece-link">Read the analysis →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECOND TRACK -->
+  <section id="monetary">
+    <div class="container">
+      <div class="section-header">
+        <div class="label">Second Research Track</div>
+        <h2>Monetary Credibility<br>and Reserve Currency.</h2>
+      </div>
+
+      <div class="track-layout">
+        <div class="track-text">
+          <p>
+            The same methodology applied to reserve currency succession across 4,000 years of monetary data. A two-stage model identifies leading indicators with documented detection windows of 29 to 98 years.
+          </p>
+          <p>
+            Applied in real time to the US dollar, euro, and renminbi succession timeline. Papers published on SSRN.
+          </p>
+          <p>
+            Relevant to defense, government, and institutional organizations navigating AI disruption and geopolitical monetary risk at the same time.
+          </p>
+        </div>
+
+        <div class="track-indicators">
+          <div class="indicator">
+            <div class="indicator-label">Dataset span</div>
+            <div class="indicator-value">4,000</div>
+            <div class="indicator-desc">Years of monetary history</div>
+          </div>
+          <div class="indicator">
+            <div class="indicator-label">Detection window</div>
+            <div class="indicator-value">29–98</div>
+            <div class="indicator-desc">Years of lead time before succession events</div>
+          </div>
+          <div class="indicator">
+            <div class="indicator-label">Active tracking</div>
+            <div class="indicator-value">3</div>
+            <div class="indicator-desc">Reserve currencies monitored in real time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENTS -->
+  <section id="engagements">
+    <div class="container">
+      <div class="section-header">
+        <div class="label">Work Together</div>
+        <h2>Engagements.</h2>
+      </div>
+
+      <div class="engagements-layout">
+        <div class="engagement-type">
+          <div class="engagement-number">01</div>
+          <h3>Bespoke Analysis</h3>
+          <p>
+            Full RDF and PAT analysis for a specific company or sector. Scored blast radius, trap identification, pivot options ranked above and below threshold. Delivered as a structured report with all formula outputs shown.
+          </p>
+          <div class="engagement-price">$15,000 — $50,000 per engagement</div>
+        </div>
+
+        <div class="engagement-type">
+          <div class="engagement-number">02</div>
+          <h3>Sector Briefings</h3>
+          <p>
+            Quarterly disruption status updates for a sector. Reach scores update as new data arrives. Relevant for strategy teams and investors who need ongoing scored intelligence, not a one-time report.
+          </p>
+          <div class="engagement-price">$6,000 — $12,000 per year</div>
+        </div>
+      </div>
+
+      <div class="engagements-cta">
+        <a href="mailto:marc@orbitalai.net" class="btn-primary">Get in touch</a>
+        <p>The first conversation is a fit check. Describe what you're facing and we'll determine whether the frameworks apply.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="tools-intro">
+        <div class="label">Also Built</div>
+        <p>These tools were built because our frameworks scored their substrates as vacant.</p>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-name">The Forge</div>
+          <div class="tool-desc">PM layer for AI-assisted software development. Locked specs, immutable versioning, structured handoffs between sessions.</div>
+          <a href="#" class="tool-link">theforge.app</a>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">SwarmSpace</div>
+          <div class="tool-desc">Agent trust and curation infrastructure. 13 intelligence workflows, merit-based plugin registry, MCP compatible.</div>
+          <a href="https://swarmspace.app" class="tool-link">swarmspace.app</a>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">LUMARA</div>
+          <div class="tool-desc">Knowledge management with AI inference. Personal context, on-device privacy, available on iOS.</div>
+          <a href="https://lumara.ai" class="tool-link">lumara.ai</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>Orbital AI</strong>
+          Disruption intelligence research.<br>
+          Founded by Marc Yap.
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Research</h4>
+            <a href="https://orbitalai.substack.com">Shot Across the Bow</a>
+            <a href="https://ssrn.com">SSRN Papers</a>
+            <a href="https://mechanicalmusings.substack.com">Mechanical Musings</a>
+          </div>
+          <div class="footer-col">
+            <h4>Work</h4>
+            <a href="#engagements">Bespoke Analysis</a>
+            <a href="#engagements">Sector Briefings</a>
+            <a href="mailto:marc@orbitalai.net">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h4>Tools</h4>
+            <a href="https://swarmspace.app">SwarmSpace</a>
+            <a href="https://lumara.ai">LUMARA</a>
+            <a href="#">The Forge</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Orbital AI. All rights reserved.</p>
+        <p style="color: #333;">marc@orbitalai.net</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
