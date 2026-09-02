@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/sabihin", "destination": "https://sabihin.com", "permanent": false },
+    { "source": "/download/mac", "destination": "https://sabihin.com/download/mac", "permanent": false }
+  ]
+}
