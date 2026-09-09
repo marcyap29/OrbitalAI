@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Orbital AI</title>
-  <meta name="description" content="Private, on-device AI that revolves around you. Orbital AI makes software that runs on your own machine. Maker of Sabihin." />
+  <meta name="description" content="Private by architecture, not by policy. Orbital AI builds software with no server-side path to your data. Makers of Sabihin and The Forge." />
   <link rel="canonical" href="https://orbitalai.net/" />
   <meta name="theme-color" content="#07080C" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://orbitalai.net/" />
   <meta property="og:title" content="Orbital AI" />
-  <meta property="og:description" content="Private, on-device AI that revolves around you." />
+  <meta property="og:description" content="Private by architecture, not by policy. Makers of Sabihin and The Forge." />
   <meta name="twitter:card" content="summary" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -27,9 +27,9 @@
   <style>
     /* ==========================================================
        ORBITAL AI · orbitalai.net
-       Parent brand for Sabihin. Cooler and blacker than the
-       Sabihin palette on purpose: the parent is the sky, the
-       product is the warm room inside it.
+       Parent brand for Sabihin and The Forge. Cooler and blacker
+       than either product palette on purpose: the parent is the
+       sky, the products are the warm rooms inside it.
        ========================================================== */
 
     :root {
@@ -53,6 +53,15 @@
       --sbh-text-2:  #C9C8D2;
       --sbh-accent:  #E8A33D;
       --sbh-on:      #2B1D0E;
+
+      /* The Forge's own tokens, used only inside the Forge panel.
+         Same house warmth, a cooler steel border to set it apart. */
+      --frg-bg:      #131417;
+      --frg-text:    #E9EAEC;
+      --frg-text-2:  #C3C6CC;
+      --frg-accent:  #E8A04C;
+      --frg-on:      #2A1B0C;
+      --frg-border:  rgba(160,172,190,.16);
 
       --serif: 'IBM Plex Serif', Georgia, serif;
       --sans:  'IBM Plex Sans', system-ui, sans-serif;
@@ -105,7 +114,8 @@
     .nav-links a { font-size: 0.9375rem; color: var(--star-2); text-decoration: none; white-space: nowrap; }
     .nav-links a:hover { color: var(--star); }
 
-    @media (max-width: 600px) { .nav-links { gap: 16px; } .nav-links a { font-size: .875rem; } }
+    @media (max-width: 680px) { .nav-links { gap: 14px; } .nav-links a { font-size: .8125rem; } }
+    @media (max-width: 480px) { .nav-links a.hide-sm { display: none; } }
 
     /* ---------- hero ---------- */
 
@@ -135,7 +145,7 @@
     .hero p {
       font-size: 1.1875rem;
       line-height: 1.55;
-      max-width: 40ch;
+      max-width: 44ch;
       margin: 0 0 36px;
     }
 
@@ -197,56 +207,71 @@
       line-height: 1.3;
       color: var(--star);
       margin: 0;
-      max-width: 30ch;
+      max-width: 34ch;
     }
 
-    /* ---------- Sabihin panel ---------- */
+    /* ---------- product panels (shared skeleton) ---------- */
 
-    .sbh-panel {
-      margin-top: 48px;
-      background: var(--sbh-bg);
-      border: 1px solid rgba(232,163,61,.18);
+    .panel {
+      margin-top: 40px;
       border-radius: 14px;
       padding: 40px;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 40px;
-      color: var(--sbh-text-2);
     }
-    @media (max-width: 820px) { .sbh-panel { grid-template-columns: 1fr; padding: 28px; } }
+    @media (max-width: 820px) { .panel { grid-template-columns: 1fr; padding: 28px; } }
 
-    .sbh-name {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
-    }
-    .sbh-tile {
+    .panel-name { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .panel-tile {
       width: 40px; height: 40px; border-radius: 22%;
       background: #0E0F13; border: 1px solid rgba(255,255,255,.08);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex: none;
     }
-    .sbh-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; }
-    .sbh-bars i { display: block; width: 2px; background: var(--sbh-accent); border-radius: 1px; }
+    .panel-name h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; }
+    .panel-name small { display: block; font-family: var(--sans); font-size: .875rem; color: #8A8A98; margin-top: 2px; }
 
-    .sbh-name h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; color: var(--sbh-text); }
-    .sbh-name small { display: block; font-family: var(--sans); font-size: .875rem; color: #8A8A98; margin-top: 2px; }
+    .panel p { margin: 0 0 16px; font-size: 1rem; line-height: 1.6; }
+    .panel p:last-of-type { margin-bottom: 0; }
 
-    .sbh-panel p { margin: 0 0 16px; font-size: 1rem; line-height: 1.6; }
-    .sbh-panel p:last-of-type { margin-bottom: 0; }
-
-    .sbh-facts { list-style: none; margin: 0; padding: 0; }
-    .sbh-facts li {
+    .facts { list-style: none; margin: 0; padding: 0; }
+    .facts li {
       padding: 14px 0;
       border-top: 1px solid rgba(255,255,255,.06);
       font-size: .9875rem;
-      color: var(--sbh-text-2);
     }
-    .sbh-facts li:first-child { border-top: none; padding-top: 0; }
-    .sbh-facts li strong { display: block; font-weight: 500; color: var(--sbh-text); margin-bottom: 2px; }
+    .facts li:first-child { border-top: none; padding-top: 0; }
+    .facts li strong { display: block; font-weight: 500; margin-bottom: 2px; }
 
-    .sbh-actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .panel-actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* ---------- Sabihin panel skin ---------- */
+
+    .sbh-panel { background: var(--sbh-bg); border: 1px solid rgba(232,163,61,.18); color: var(--sbh-text-2); }
+    .sbh-panel .panel-name h3 { color: var(--sbh-text); }
+    .sbh-panel .facts li { color: var(--sbh-text-2); }
+    .sbh-panel .facts li strong { color: var(--sbh-text); }
+    .sbh-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; }
+    .sbh-bars i { display: block; width: 2px; background: var(--sbh-accent); border-radius: 1px; }
     .btn-sbh { background: var(--sbh-accent); color: var(--sbh-on); }
     .btn-sbh:hover { background: #F2B860; }
     .btn-sbh-quiet { border-color: rgba(255,255,255,.1); color: var(--sbh-text-2); }
     .btn-sbh-quiet:hover { border-color: rgba(255,255,255,.22); color: var(--sbh-text); }
+
+    /* ---------- The Forge panel skin ---------- */
+
+    .frg-panel { background: var(--frg-bg); border: 1px solid var(--frg-border); color: var(--frg-text-2); }
+    .frg-panel .panel-name h3 { color: var(--frg-text); }
+    .frg-panel .facts li { color: var(--frg-text-2); }
+    .frg-panel .facts li strong { color: var(--frg-text); }
+    .frg-mark { width: 20px; height: 20px; }
+    .frg-mark .b { stroke: var(--frg-accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .frg-mark .s { fill: var(--frg-accent); }
+    .btn-frg { background: var(--frg-accent); color: var(--frg-on); }
+    .btn-frg:hover { background: #F2B463; }
+    .btn-frg-quiet { border-color: rgba(255,255,255,.1); color: var(--frg-text-2); }
+    .btn-frg-quiet:hover { border-color: rgba(255,255,255,.22); color: var(--frg-text); }
 
     /* ---------- principles ---------- */
 
@@ -287,7 +312,8 @@
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#sabihin">Sabihin</a>
-        <a href="#how">How we build</a>
+        <a href="#forge">The Forge</a>
+        <a class="hide-sm" href="#how">How we build</a>
         <a href="#about">About</a>
       </nav>
     </div>
@@ -299,11 +325,11 @@
     <section class="hero" id="top" style="border-top:none">
       <div class="wrap hero-grid">
         <div>
-          <h1>Private, on-device AI that revolves around you.</h1>
-          <p>Software that runs on your own machine and answers to no one else. You buy it once. It keeps working.</p>
+          <h1>Private by architecture, not by policy.</h1>
+          <p>Two products. No backend that touches your data. Sabihin runs fully on your machine. The Forge runs on the AI key you already own. Either way, nothing routes through us.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#sabihin">See Sabihin</a>
-            <a class="btn btn-quiet" href="https://sabihin.com/download/mac">Download for macOS</a>
+            <a class="btn btn-quiet" href="#forge">See The Forge</a>
           </div>
         </div>
 
@@ -341,18 +367,19 @@
       </div>
     </section>
 
-    <!-- ============ SABIHIN ============ -->
+    <!-- ============ WHAT WE MAKE ============ -->
     <section id="sabihin">
       <div class="wrap">
         <div class="section-head">
           <h2>What we make</h2>
-          <p class="lede">One product, shipping now. Voice dictation that runs entirely on your device.</p>
+          <p class="lede">Two products, shipping now.</p>
         </div>
 
-        <div class="sbh-panel">
+        <!-- Sabihin -->
+        <div class="panel sbh-panel">
           <div>
-            <div class="sbh-name">
-              <div class="sbh-tile" aria-hidden="true">
+            <div class="panel-name">
+              <div class="panel-tile" aria-hidden="true">
                 <div class="sbh-bars"><i style="height:40%"></i><i style="height:90%"></i><i style="height:60%"></i><i style="height:100%"></i><i style="height:50%"></i></div>
               </div>
               <div>
@@ -362,16 +389,48 @@
             </div>
             <p>Press a hotkey, speak, and polished text lands at your cursor in whatever app has focus. Punctuation, casing, numbers, and names come out right. Speech recognition, formatting, and screen-context handling all run locally.</p>
             <p>It works the same on a plane, in a SCIF, or with the network unplugged. Nothing you say leaves the machine.</p>
-            <div class="sbh-actions">
+            <div class="panel-actions">
               <a class="btn btn-sbh" href="https://sabihin.com">Visit sabihin.com</a>
               <a class="btn btn-sbh-quiet" href="https://sabihin.com/download/mac">Download for macOS</a>
             </div>
           </div>
-          <ul class="sbh-facts">
+          <ul class="facts">
             <li><strong>macOS, available now</strong>$59 one-time. Twelve months of updates included.</li>
             <li><strong>iOS and Android, in testing</strong>A system keyboard running the same on-device pipeline.</li>
             <li><strong>Built for regulated work</strong>Defense, legal, and clinical teams who can't send audio to a cloud.</li>
             <li><strong>Deterministic cleanup</strong>Same input, same output, every time. A transcript you can stand behind.</li>
+          </ul>
+        </div>
+
+        <!-- The Forge -->
+        <div class="panel frg-panel" id="forge">
+          <div>
+            <div class="panel-name">
+              <div class="panel-tile" aria-hidden="true">
+                <svg class="frg-mark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path class="b" d="M8 5 L4 12 L8 19"/>
+                  <path class="b" d="M16 5 L20 12 L16 19"/>
+                  <circle class="s" cx="12" cy="12" r="1.6"/>
+                </svg>
+              </div>
+              <div>
+                <h3>The Forge</h3>
+                <small>Keeps your build honest.</small>
+              </div>
+            </div>
+            <p>An AI-native project manager that sits above your coding agent, Claude Code, Cursor, or Codex. It locks a spec, watches the build against it, and flags the moment an agent drifts from what you actually asked for.</p>
+            <p>The free plan does none of that with a model at all, it's pure planning and tracking. The advanced plan connects to the model and key you already use. We never see either one.</p>
+            <div class="panel-actions">
+              <a class="btn btn-frg" href="#">Join the waitlist</a>
+              <a class="btn btn-frg-quiet" href="#">Learn more</a>
+            </div>
+          </div>
+          <ul class="facts">
+            <li><strong>Plan</strong>Interview-driven spec generation before a line of code gets written.</li>
+            <li><strong>Watch</strong>Real-time drift detection against the locked spec while agents build.</li>
+            <li><strong>Pull</strong>Point it at an existing repo, get an as-built spec back.</li>
+            <li><strong>Free plan</strong>No LLM calls, no subscription, no data leaving your machine.</li>
+            <li><strong>Pro plan</strong>Your API key, your model, your subscription. Not ours.</li>
           </ul>
         </div>
       </div>
@@ -386,16 +445,16 @@
         </div>
         <div class="principles">
           <div class="principle">
-            <h3>It runs on your device.</h3>
-            <p>The model, the processing, the data. All of it lives on hardware you own. If a feature needs a server, we don't build the feature.</p>
-          </div>
-          <div class="principle">
-            <h3>You buy it once.</h3>
-            <p>No subscription to keep the lights on. Pay for the software, get updates for a year, keep using it for as long as you like.</p>
+            <h3>It never touches our servers.</h3>
+            <p>Sabihin runs the model on your hardware. The Forge runs on whatever key you give it, local Ollama, OpenAI, Claude, your choice. Neither has a path back to us. There's nothing on our servers to breach, subpoena, or sell, because there's nothing on our servers.</p>
           </div>
           <div class="principle">
             <h3>It says what it does.</h3>
-            <p>Plain language about what leaves the device (nothing) and what stays (everything). No dark patterns, no fine print doing the real talking.</p>
+            <p>Plain language about what leaves your machine and what stays. Free tiers are actually free, not a funnel. Paid tiers are opt-in, not a trap. No dark patterns, no fine print doing the real talking.</p>
+          </div>
+          <div class="principle">
+            <h3>It shows its work.</h3>
+            <p>Sabihin gives you the same output for the same input, every time. The Forge locks a spec and keeps an audit trail of every deviation from it. You can always see what the software decided and why.</p>
           </div>
         </div>
       </div>
@@ -408,8 +467,8 @@
           <h2>About</h2>
           <div class="about">
             <p class="lede">A small company making serious tools.</p>
-            <p>Orbital AI is a one-person software company based in the United States. We build for people who dictate, write, and think all day and who care where that work ends up. Most of them can't, or won't, hand their words to a cloud.</p>
-            <p>The name is the idea. The software orbits you: it runs where you are, it follows your rules, and it leaves when you say so. More products are on the way. Each one will follow the same three rules.</p>
+            <p>Orbital AI is a one-person software company based in the United States. We build for people who do serious work and don't want a vendor sitting between them and it, whether that's a dictated word or a week of code.</p>
+            <p>The name is the idea. The software orbits you: it runs on your terms, answers to you, and leaves when you say so. Two products now. Whatever comes next follows the same three rules.</p>
           </div>
         </div>
       </div>
@@ -429,6 +488,7 @@
       </a>
       <nav class="foot-links" aria-label="Footer">
         <a href="https://sabihin.com">Sabihin</a>
+        <a href="#forge">The Forge</a>
         <a href="mailto:marcyap@orbitalai.net">Contact</a>
       </nav>
       <small>&copy; <span id="year"></span> Orbital AI, LLC</small>
