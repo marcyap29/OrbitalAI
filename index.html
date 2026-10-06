@@ -63,6 +63,16 @@
       --frg-on:      #2A1B0C;
       --frg-border:  rgba(160,172,190,.16);
 
+      /* AR Mechanic's own tokens, used only inside the AR Mechanic panel.
+         Same house surfaces, hi-vis yellow in place of the orange. */
+      --arm-bg:      #15161C;
+      --arm-text:    #EDECF2;
+      --arm-text-2:  #C9C8D2;
+      --arm-accent:  #FFC83D;
+      --arm-bright:  #FFD66B;
+      --arm-on:      #2A2007;
+      --arm-border:  rgba(255,200,61,.22);
+
       --serif: 'IBM Plex Serif', Georgia, serif;
       --sans:  'IBM Plex Sans', system-ui, sans-serif;
 
@@ -115,7 +125,13 @@
     .nav-links a:hover { color: var(--star); }
 
     @media (max-width: 680px) { .nav-links { gap: 14px; } .nav-links a { font-size: .8125rem; } }
-    @media (max-width: 480px) { .nav-links a.hide-sm { display: none; } }
+    @media (max-width: 480px) {
+      .nav-links a.hide-sm { display: none; }
+      /* four links need the room: keep the orbit mark, drop the wordmark in the header only */
+      .nav { gap: 12px; }
+      .nav .lockup span { display: none; }
+      .nav-links { gap: 12px; }
+    }
 
     /* ---------- hero ---------- */
 
@@ -273,6 +289,26 @@
     .btn-frg-quiet { border-color: rgba(255,255,255,.1); color: var(--frg-text-2); }
     .btn-frg-quiet:hover { border-color: rgba(255,255,255,.22); color: var(--frg-text); }
 
+    /* ---------- AR Mechanic panel skin ---------- */
+
+    .arm-panel { background: var(--arm-bg); border: 1px solid var(--arm-border); color: var(--arm-text-2); }
+    .arm-panel .panel-name h3 { color: var(--arm-text); }
+    .arm-panel .facts li { color: var(--arm-text-2); }
+    .arm-panel .facts li strong { color: var(--arm-text); }
+    .arm-mark { width: 28px; height: 28px; }
+    .arm-mark .b { stroke: var(--arm-accent); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .arm-mark .s { fill: var(--arm-accent); }
+    .pill-status {
+      display: inline-block; margin-left: 10px; vertical-align: middle;
+      font-family: var(--sans); font-size: .6875rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--arm-accent); background: rgba(255,200,61,.10); border: 1px solid var(--arm-border);
+      padding: .15rem .55rem; border-radius: 999px;
+    }
+    .btn-arm { background: var(--arm-accent); color: var(--arm-on); }
+    .btn-arm:hover { background: var(--arm-bright); }
+    .btn-arm-quiet { border-color: rgba(255,255,255,.1); color: var(--arm-text-2); }
+    .btn-arm-quiet:hover { border-color: rgba(255,255,255,.22); color: var(--arm-text); }
+
     /* ---------- principles ---------- */
 
     .principles { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -313,6 +349,7 @@
       <nav class="nav-links" aria-label="Primary">
         <a href="#sabihin">Sabihin</a>
         <a href="#forge">The Forge</a>
+        <a href="#ar-mechanic">AR Mechanic</a>
         <a class="hide-sm" href="#how">How we build</a>
         <a href="#about">About</a>
       </nav>
@@ -326,10 +363,11 @@
       <div class="wrap hero-grid">
         <div>
           <h1>AI that revolves around you.</h1>
-          <p><strong style="color:var(--star);font-weight:500">Private by architecture, not by policy.</strong> Two products. No backend that touches your data. Sabihin runs fully on your machine. The Forge runs on the AI key you already own. Either way, nothing routes through us.</p>
+          <p><strong style="color:var(--star);font-weight:500">Private by architecture, not by policy.</strong> Two products shipping, a third in development. No backend that touches your data. Sabihin runs fully on your machine. The Forge and AR Mechanic run on the AI key you already own. Either way, nothing routes through us.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#sabihin">See Sabihin</a>
             <a class="btn btn-quiet" href="#forge">See The Forge</a>
+            <a class="btn btn-quiet" href="#ar-mechanic">See AR Mechanic</a>
           </div>
         </div>
 
@@ -372,7 +410,7 @@
       <div class="wrap">
         <div class="section-head">
           <h2>What we make</h2>
-          <p class="lede">Two products, shipping now.</p>
+          <p class="lede">Two products shipping now, a third on the way.</p>
         </div>
 
         <!-- Sabihin -->
@@ -429,6 +467,39 @@
             <li><strong>Commercial &amp; teams</strong><a href="https://github.com/marcyap29/theforge/issues" style="color:inherit">Open an issue on GitHub</a> to discuss a commercial license.</li>
           </ul>
         </div>
+
+        <!-- AR Mechanic -->
+        <div class="panel arm-panel" id="ar-mechanic">
+          <div>
+            <div class="panel-name">
+              <div class="panel-tile" aria-hidden="true">
+                <svg class="arm-mark" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                  <path class="b" d="M5.5 6 H22.5 Q25 6 25 8.5 V17.5 Q25 20 22.5 20 H17.8 Q16.8 20 16.2 19.2 Q15.2 17.8 14 17.8 Q12.8 17.8 11.8 19.2 Q11.2 20 10.2 20 H5.5 Q3 20 3 17.5 V8.5 Q3 6 5.5 6 Z"/>
+                  <rect class="s" x="0.6" y="9.2" width="2.4" height="7.6" rx="1.1"/>
+                  <rect class="s" x="25" y="9.2" width="2.4" height="7.6" rx="1.1"/>
+                  <path class="s" d="M6.6 14.6 V13.2 Q6.6 12.5 7.3 12.3 L9.6 11.8 L11.1 9.6 Q11.4 9.2 11.9 9.2 H16.1 Q16.6 9.2 16.9 9.6 L18.4 11.8 L20.7 12.3 Q21.4 12.5 21.4 13.2 V14.6 Z"/>
+                  <circle class="s" cx="10.2" cy="14.9" r="1.7"/><circle class="s" cx="17.8" cy="14.9" r="1.7"/>
+                </svg>
+              </div>
+              <div>
+                <h3>AR Mechanic<span class="pill-status">In development</span></h3>
+                <small>Point at the engine. Get the next step.</small>
+              </div>
+            </div>
+            <p>Camera-guided car maintenance. Point your phone at the engine bay and it labels what matters, walks you through the job one step at a time, and checks each step with the camera before moving on.</p>
+            <p>It runs on an AI key you provide, with Gemini first and more providers on the way. Camera frames go from your phone to your provider and nowhere else. No Orbital AI server, no account.</p>
+            <div class="panel-actions">
+              <a class="btn btn-arm" href="https://armechanic.vercel.app">Visit AR Mechanic</a>
+              <a class="btn btn-arm-quiet" href="https://armechanic.vercel.app/#join">Join the waitlist</a>
+            </div>
+          </div>
+          <ul class="facts">
+            <li><strong>Proof of concept</strong>Oil level, oil change, and air filter to start. No App Store or Play listing yet.</li>
+            <li><strong>Annotated live view</strong>Labels, a reference photo, and a parts and tools list sit over the camera feed.</li>
+            <li><strong>Verified steps</strong>The camera checks each step against what finished work should look like.</li>
+            <li><strong>Your key, your history</strong>Key in the device keychain. Session history stays on the phone.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -442,7 +513,7 @@
         <div class="principles">
           <div class="principle">
             <h3>It never touches our servers.</h3>
-            <p>Sabihin runs the model on your hardware. The Forge runs on whatever key you give it, local Ollama, OpenAI, Claude, your choice. Neither has a path back to us. There's nothing on our servers to breach, subpoena, or sell, because there's nothing on our servers.</p>
+            <p>Sabihin runs the model on your hardware. The Forge and AR Mechanic run on whatever key you give them. None of them has a path back to us. There's nothing on our servers to breach, subpoena, or sell, because there's nothing on our servers.</p>
           </div>
           <div class="principle">
             <h3>It says what it does.</h3>
@@ -464,7 +535,7 @@
           <div class="about">
             <p class="lede">A small company making serious tools.</p>
             <p>Orbital AI is a one-person software company based in the United States. We build for people who do serious work and don't want a vendor sitting between them and it, whether that's a dictated word or a week of code.</p>
-            <p>The name is the idea. The software orbits you: it runs on your terms, answers to you, and leaves when you say so. Two products now. Whatever comes next follows the same three rules.</p>
+            <p>The name is the idea. The software orbits you: it runs on your terms, answers to you, and leaves when you say so. Two products now, a third in development. Whatever comes next follows the same three rules.</p>
           </div>
         </div>
       </div>
@@ -485,6 +556,7 @@
       <nav class="foot-links" aria-label="Footer">
         <a href="https://sabihin.com">Sabihin</a>
         <a href="#forge">The Forge</a>
+        <a href="#ar-mechanic">AR Mechanic</a>
         <a href="mailto:marcyap@orbitalai.net">Contact</a>
       </nav>
       <small>&copy; <span id="year"></span> Orbital AI, LLC</small>
