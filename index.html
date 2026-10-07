@@ -309,6 +309,46 @@
     .btn-arm-quiet { border-color: rgba(255,255,255,.1); color: var(--arm-text-2); }
     .btn-arm-quiet:hover { border-color: rgba(255,255,255,.22); color: var(--arm-text); }
 
+    /* ---------- what's new ---------- */
+
+    .updates-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+
+    .update-entry {
+      padding: 32px 0;
+      border-top: 1px solid var(--hairline);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: 16px 64px;
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .update-entry { grid-template-columns: 1fr; gap: 10px; }
+    }
+
+    .update-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 3px;
+    }
+    .update-tag {
+      font-size: .8125rem;
+      font-weight: 500;
+      color: var(--brass);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .update-date { font-size: .8125rem; color: var(--star-3); }
+
+    .update-problem {
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      color: var(--star);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+    .update-fix { margin: 0; font-size: .9875rem; color: var(--star-2); line-height: 1.6; }
+
     /* ---------- principles ---------- */
 
     .principles { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -350,6 +390,7 @@
         <a href="#sabihin">Sabihin</a>
         <a href="#forge">The Forge</a>
         <a href="#ar-mechanic">AR Mechanic</a>
+        <a class="hide-sm" href="#updates">What's new</a>
         <a class="hide-sm" href="#how">How we build</a>
         <a href="#about">About</a>
       </nav>
@@ -449,11 +490,11 @@
               </div>
               <div>
                 <h3>The Forge</h3>
-                <small>Keeps your build honest.</small>
+                <small>Build it. Ship it. Without the clipboard.</small>
               </div>
             </div>
-            <p>An AI-native project manager that sits above your coding agent, Claude Code, Cursor, or Codex. It locks a spec, watches the build against it, and flags the moment an agent drifts from what you actually asked for.</p>
-            <p>Bring your own API key — Claude, OpenAI, Gemini, or a local Ollama model. Keys are stored in the macOS Keychain and never leave your machine. No Forge account, no Forge server in the loop.</p>
+            <p>You describe what you want built. The Forge reads your code, writes the edits, checks they compile, and commits — without you touching a clipboard or leaving the app.</p>
+            <p>Bring your own API key — Claude, OpenAI, Gemini, or a local Ollama model. Keys stay in the macOS Keychain. No Forge account, no Forge server, nothing between you and your code.</p>
             <div class="panel-actions">
               <a class="btn btn-frg" href="https://github.com/marcyap29/theforge-releases/releases/latest/download/TheForge.dmg">Download for macOS</a>
               <a class="btn btn-frg-quiet" href="https://github.com/marcyap29/theforge">View on GitHub</a>
@@ -499,6 +540,42 @@
             <li><strong>Verified steps</strong>The camera checks each step against what finished work should look like.</li>
             <li><strong>Your key, your history</strong>Key in the device keychain. Session history stays on the phone.</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT'S NEW ============ -->
+    <section id="updates">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What's new</h2>
+          <p class="lede">Three things we fixed because they were in the way.</p>
+        </div>
+        <div class="updates-list">
+          <div class="update-entry">
+            <div class="update-meta">
+              <span class="update-tag">The Forge · v1.0</span>
+              <span class="update-date">October 2026</span>
+            </div>
+            <p class="update-problem">You were switching between your editor, a chat window, and your notes just to figure out what to build next.</p>
+            <p class="update-fix">The planning conversation lives in the app now. Talk, review suggestions, push them to the board — one place. Build runs read your code, write targeted edits, check they compile, and commit. No clipboard.</p>
+          </div>
+          <div class="update-entry">
+            <div class="update-meta">
+              <span class="update-tag">The Forge · v0.4</span>
+              <span class="update-date">September 2026</span>
+            </div>
+            <p class="update-problem">AI shipped you code that didn't compile — and you didn't find out until you tried to run it.</p>
+            <p class="update-fix">Every build is checked before you can commit it. If the code doesn't pass analysis, you can't accidentally push it. Fake builds — docs-only diffs, stub code — get flagged before you ship.</p>
+          </div>
+          <div class="update-entry">
+            <div class="update-meta">
+              <span class="update-tag">The Forge · v0.4</span>
+              <span class="update-date">September 2026</span>
+            </div>
+            <p class="update-problem">You had to leave the app and open Xcode just to see if what you built actually ran.</p>
+            <p class="update-fix">Run &amp; Preview boots the simulator from inside The Forge. Hot reload, live mirror, build console — without switching apps.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -557,6 +634,7 @@
         <a href="https://sabihin.com">Sabihin</a>
         <a href="#forge">The Forge</a>
         <a href="#ar-mechanic">AR Mechanic</a>
+        <a href="#updates">What's new</a>
         <a href="mailto:marcyap@orbitalai.net">Contact</a>
       </nav>
       <small>&copy; <span id="year"></span> Orbital AI, LLC</small>
