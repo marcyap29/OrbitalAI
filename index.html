@@ -73,6 +73,15 @@
       --arm-on:      #2A2007;
       --arm-border:  rgba(255,200,61,.22);
 
+      /* Sulatin's own tokens — jade/teal to distinguish from the amber family. */
+      --slt-bg:      #111A19;
+      --slt-text:    #E8F2F0;
+      --slt-text-2:  #B2C8C4;
+      --slt-accent:  #3DBFA6;
+      --slt-bright:  #5DD4BB;
+      --slt-on:      #051210;
+      --slt-border:  rgba(61,191,166,.22);
+
       --serif: 'IBM Plex Serif', Georgia, serif;
       --sans:  'IBM Plex Sans', system-ui, sans-serif;
 
@@ -309,6 +318,20 @@
     .btn-arm-quiet { border-color: rgba(255,255,255,.1); color: var(--arm-text-2); }
     .btn-arm-quiet:hover { border-color: rgba(255,255,255,.22); color: var(--arm-text); }
 
+    /* ---------- Sulatin panel skin ---------- */
+
+    .slt-panel { background: var(--slt-bg); border: 1px solid var(--slt-border); color: var(--slt-text-2); }
+    .slt-panel .panel-name h3 { color: var(--slt-text); }
+    .slt-panel .facts li { color: var(--slt-text-2); }
+    .slt-panel .facts li strong { color: var(--slt-text); }
+    .slt-mark { width: 28px; height: 28px; }
+    .slt-mark .b { stroke: var(--slt-accent); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .slt-mark .s { fill: var(--slt-accent); }
+    .btn-slt { background: var(--slt-accent); color: var(--slt-on); }
+    .btn-slt:hover { background: var(--slt-bright); }
+    .btn-slt-quiet { border-color: rgba(255,255,255,.1); color: var(--slt-text-2); }
+    .btn-slt-quiet:hover { border-color: rgba(255,255,255,.22); color: var(--slt-text); }
+
     /* ---------- what's new ---------- */
 
     .updates-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
@@ -390,6 +413,7 @@
         <a href="#sabihin">Sabihin</a>
         <a href="#forge">The Forge</a>
         <a href="#ar-mechanic">AR Mechanic</a>
+        <a class="hide-sm" href="#sulatin">Sulatin</a>
         <a class="hide-sm" href="#updates">What's new</a>
         <a class="hide-sm" href="#how">How we build</a>
         <a href="#about">About</a>
@@ -404,11 +428,12 @@
       <div class="wrap hero-grid">
         <div>
           <h1>AI that revolves around you.</h1>
-          <p><strong style="color:var(--star);font-weight:500">Private by architecture, not by policy.</strong> Two products shipping, a third in development. No backend that touches your data. Sabihin runs fully on your machine. The Forge and AR Mechanic run on the AI key you already own. Either way, nothing routes through us.</p>
+          <p><strong style="color:var(--star);font-weight:500">Private by architecture, not by policy.</strong> Two products shipping, two in development. No backend that touches your data. Sabihin runs fully on your machine. The Forge runs on the AI key you already own. Either way, nothing routes through us.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#sabihin">See Sabihin</a>
             <a class="btn btn-quiet" href="#forge">See The Forge</a>
             <a class="btn btn-quiet" href="#ar-mechanic">See AR Mechanic</a>
+            <a class="btn btn-quiet" href="#sulatin">See Sulatin</a>
           </div>
         </div>
 
@@ -451,7 +476,7 @@
       <div class="wrap">
         <div class="section-head">
           <h2>What we make</h2>
-          <p class="lede">Two products shipping now, a third on the way.</p>
+          <p class="lede">Two products shipping now, two more on the way.</p>
         </div>
 
         <!-- Sabihin -->
@@ -541,6 +566,39 @@
             <li><strong>Your key, your history</strong>Key in the device keychain. Session history stays on the phone.</li>
           </ul>
         </div>
+
+        <!-- Sulatin -->
+        <div class="panel slt-panel" id="sulatin">
+          <div>
+            <div class="panel-name">
+              <div class="panel-tile" aria-hidden="true">
+                <svg class="slt-mark" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                  <path class="b" d="M20.5 4.5 L23.5 7.5 L10.5 20.5 H7.5 V17.5 Z"/>
+                  <line class="b" x1="18.5" y1="6.5" x2="21.5" y2="9.5"/>
+                  <path class="s" d="M7.5 17.5 L7.5 20.5 L10.5 20.5 Z"/>
+                  <line class="b" x1="4" y1="23.5" x2="13.5" y2="23.5" stroke-width="1.2" opacity=".55"/>
+                  <line class="b" x1="4" y1="26" x2="10.5" y2="26" stroke-width="1.2" opacity=".35"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Sulatin<span class="pill-status" style="background:rgba(61,191,166,.10);color:var(--slt-accent);border-color:var(--slt-border);">In development</span></h3>
+                <small>Tagalog for "to write."</small>
+              </div>
+            </div>
+            <p>You speak. Sulatin transcribes — fully offline — and AI turns what you said into structured notes: headers, bullets, a clean summary. One tap to start, one tap to stop, a real note at the end.</p>
+            <p>Recognition runs on-device via Parakeet-TDT, so no audio leaves your phone. AI structuring uses the key you bring. Nothing goes through Orbital AI either way.</p>
+            <div class="panel-actions">
+              <a class="btn btn-slt-quiet" href="https://github.com/marcyap29/sulatin">View on GitHub</a>
+            </div>
+          </div>
+          <ul class="facts">
+            <li><strong>On-device transcription</strong>Parakeet-TDT runs locally. Audio never leaves your device unless you ask for AI structuring.</li>
+            <li><strong>AI-structured notes</strong>Record a rambling thought; get back something you'd actually re-read. Uses your own API key.</li>
+            <li><strong>Export anywhere</strong>Markdown, plain text, or PDF. Share or archive without leaving the app.</li>
+            <li><strong>Baybayin ready</strong>Noto Sans Tagalog is built in — the script renders correctly everywhere in the app.</li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
@@ -612,7 +670,7 @@
           <div class="about">
             <p class="lede">A small company making serious tools.</p>
             <p>Orbital AI is a one-person software company based in the United States. We build for people who do serious work and don't want a vendor sitting between them and it, whether that's a dictated word or a week of code.</p>
-            <p>The name is the idea. The software orbits you: it runs on your terms, answers to you, and leaves when you say so. Two products now, a third in development. Whatever comes next follows the same three rules.</p>
+            <p>The name is the idea. The software orbits you: it runs on your terms, answers to you, and leaves when you say so. Two products now, two more in development. Whatever comes next follows the same three rules.</p>
           </div>
         </div>
       </div>
@@ -634,6 +692,7 @@
         <a href="https://sabihin.com">Sabihin</a>
         <a href="#forge">The Forge</a>
         <a href="#ar-mechanic">AR Mechanic</a>
+        <a href="#sulatin">Sulatin</a>
         <a href="#updates">What's new</a>
         <a href="mailto:marcyap@orbitalai.net">Contact</a>
       </nav>
