@@ -73,14 +73,15 @@
       --arm-on:      #2A2007;
       --arm-border:  rgba(255,200,61,.22);
 
-      /* Sulatin's own tokens — jade/teal to distinguish from the amber family. */
-      --slt-bg:      #111A19;
-      --slt-text:    #E8F2F0;
-      --slt-text-2:  #B2C8C4;
-      --slt-accent:  #3DBFA6;
-      --slt-bright:  #5DD4BB;
-      --slt-on:      #051210;
-      --slt-border:  rgba(61,191,166,.22);
+      /* Sulatin — orange primary (same family as Sabihin/Forge), teal on icon + pill. */
+      --slt-bg:      #131417;
+      --slt-text:    #E9EAEC;
+      --slt-text-2:  #C3C6CC;
+      --slt-accent:  #E8A04C;
+      --slt-bright:  #F2B463;
+      --slt-on:      #2A1B0C;
+      --slt-border:  rgba(232,160,76,.18);
+      --slt-teal:    #3DBFA6;
 
       --serif: 'IBM Plex Serif', Georgia, serif;
       --sans:  'IBM Plex Sans', system-ui, sans-serif;
@@ -325,8 +326,8 @@
     .slt-panel .facts li { color: var(--slt-text-2); }
     .slt-panel .facts li strong { color: var(--slt-text); }
     .slt-mark { width: 28px; height: 28px; }
-    .slt-mark .b { stroke: var(--slt-accent); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .slt-mark .s { fill: var(--slt-accent); }
+    .slt-mark .b { stroke: var(--slt-teal); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .slt-mark .s { fill: var(--slt-teal); }
     .btn-slt { background: var(--slt-accent); color: var(--slt-on); }
     .btn-slt:hover { background: var(--slt-bright); }
     .btn-slt-quiet { border-color: rgba(255,255,255,.1); color: var(--slt-text-2); }
